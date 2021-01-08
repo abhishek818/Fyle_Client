@@ -3,14 +3,14 @@ import React, { Fragment, useEffect, useState } from "react";
 const ListBanks = () => {
 
   const [banks, setBanks] = useState([]);
-  const [location, setLocation] = useState('');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
   
   const getBanks = async () => {
     try {
-      console.log(location);
-      const response = await fetch(`http://localhost:5000/api/branches?q=${location}`);
+      // console.log(location);
+      const response = await fetch(`http://localhost:5000/api/branches/autocomplete?q=${query}`);
       const results = await response.json();
 
       setBanks(results);
@@ -25,18 +25,30 @@ const ListBanks = () => {
 
   return (
     <Fragment>
-      <select value={location} onChange = {(e) =>
+      <span>
+      <select className="select mt-5"
+       value={query} onChange = {(e) =>
       {
-        setLocation(e.target.value);
+        setQuery(e.target.value);
       }}>
+        <option value=""> Select an Option </option>
         <option value="Bangalore"> Bangalore </option>
         <option value="Mumbai"> Mumbai </option>
         <option value="Kolkata"> Kolkata </option>
         <option value="Delhi"> Delhi </option>
         <option value="Ahmedabad"> Ahmedabad </option>
       </select>
+      
+      <input type="text" className="search" placeholder="Search" 
+        value={query} onChange = {(e) =>
+      {
+        setQuery(e.target.value);
+      }} />
+      <i className="fa fa-search" />
+    
+    </span>
 
-      <table style={{ width: "90%" }} className="table table-bordered table-responsive-xl
+      <table style={{ maxWidth: "90%" }} className="table table-bordered table-responsive-xl
        mb-5 mt-5 table-hover
        table-striped text-center
        center">

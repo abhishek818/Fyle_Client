@@ -48,3 +48,24 @@
   background-color: #212529;
   border-color: #32383e;
 }
+
+.select
+{
+  margin-left: 25px;
+  width: 15%;
+  border: solid orange;
+}
+
+.search
+{
+  width: 20%;
+  margin-left: 50%;
+  display: inline;
+  padding-left: 2.375rem;
+}
+
+.fa-search
+{
+  margin-left: -19%;
+}
+
