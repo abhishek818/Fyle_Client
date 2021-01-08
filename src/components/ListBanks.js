@@ -9,10 +9,9 @@ const ListBanks = () => {
   
   const getBanks = async () => {
     try {
-      // console.log(location);
-      const response = await fetch(`http://localhost:5000/api/branches/autocomplete?q=${query}`);
+      const response = await fetch(`/api/branches?q=${query}`);
       const results = await response.json();
-
+      
       setBanks(results);
     } catch (err) {
       console.error(err.message);
@@ -47,9 +46,10 @@ const ListBanks = () => {
       <i className="fa fa-search" />
     
     </span>
-
+    
+    <h4 className="header"> Search Results for "<span style={{ color:"red" }}>{query}</span>" </h4>
       <table style={{ maxWidth: "90%" }} className="table table-bordered table-responsive-xl
-       mb-5 mt-5 table-hover
+       mb-5 mt-4 table-hover
        table-striped text-center
        center">
         <thead className="thead-dark">
